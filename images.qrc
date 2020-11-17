@@ -1,10 +1,12 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
-<file>icons/calendar_add.png</file>
-<file>icons/client_account_template.png</file>
-<file>icons/coins.png</file>
-<file>icons/house.png</file>
-<file>icons/user_oldman.png</file>
-<file>icons/users_5.png</file>
-<file>icons/wyjscie.png</file>
+<qresource>
+<file>icon/calendar_add.png</file>
+<file>icon/client_account_template.png</file>
+<file>icon/coins.png</file>
+<file>icon/house.png</file>
+<file>icon/user_oldman.png</file>
+<file>icon/users_5.png</file>
+<file>icon/wyjscie.png</file>
+</qresource>
 </RCC>
