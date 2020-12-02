@@ -15,10 +15,14 @@ public:
 
     ~MainWindow();
     QAction *grupy;
+    QAction *zajecia;
     QDockWidget *dock = new QDockWidget();
+
+
 
 public slots:
     void pokazGrupy();
+    void pokazZajecia();
 
 
 };

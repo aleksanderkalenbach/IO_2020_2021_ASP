@@ -12,16 +12,19 @@ SOURCES += \
     grupypanel.cpp \
     login.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    zajeciapanel.cpp
 
 HEADERS += \
     grupypanel.h \
     login.h \
-    mainwindow.h
+    mainwindow.h \
+    zajeciapanel.h
 
 FORMS += \
     grupypanel.ui \
-    login.ui
+    login.ui \
+    zajeciapanel.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
