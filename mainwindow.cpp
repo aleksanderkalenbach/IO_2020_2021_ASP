@@ -53,7 +53,7 @@ void MainWindow::pokazGrupy()
         addDockWidget(Qt::LeftDockWidgetArea, dock);
         dock->setWidget(o);
 
-        o->setMinimumSize(200,300);
+        o->setMinimumSize(200,600);
         dock->setVisible(true);
     }
     else
