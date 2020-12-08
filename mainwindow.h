@@ -10,13 +10,17 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+
+
 public:
     MainWindow(QWidget *parent = nullptr);
 
     ~MainWindow();
     QAction *grupy;
     QAction *zajecia;
+    QAction *wyjdz;
     QDockWidget *dock = new QDockWidget();
+    QString login;
 
 
 

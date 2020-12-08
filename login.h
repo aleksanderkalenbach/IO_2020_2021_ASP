@@ -14,6 +14,7 @@ class Login : public QDialog
 public:
     explicit Login(QWidget *parent = nullptr);
     ~Login();
+    QString login;
 
 private:
     Ui::Login *ui;
