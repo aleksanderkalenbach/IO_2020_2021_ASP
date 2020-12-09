@@ -9,36 +9,45 @@
 #include <QLayout>
 #include <QDockWidget>
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
+  Login login;
+  if(login.exec() == QDialog::Accepted){
+
+      setWindowTitle("Szkoła pływania");
+      setCentralWidget(new QWidget(this));
+
+      QToolBar *toolbar = addToolBar("Main toolbar");
+      toolbar->setIconSize(QSize(128,32));
+      toolbar->addAction(QIcon(":/icon/house.png"),"Start");
+      toolbar->addSeparator();
+
+      grupy = toolbar->addAction(QIcon(":/icon/users_5.png"),"Grupy");
+      grupy->setCheckable(true);
+      zajecia = toolbar->addAction(QIcon(":/icon/calendar_add.png"),"Zajecia");
+      zajecia->setCheckable(true);
+      toolbar->addSeparator();
+
+      if(login.login == "Prowadzacy")
+      {
+          toolbar->addAction(QIcon(":/icon/client_account_template.png"),"Kadry");
+          toolbar->addAction(QIcon(":/icon/coins.png"),"Ksiegowosc");
+          toolbar->addAction(QIcon(":/icon/user_oldman.png"),"Zarzad");
+          toolbar->addSeparator();
+      }
 
 
-  setWindowTitle("Szkoła pływania");
-  setCentralWidget(new QWidget(this));
+      wyjdz = toolbar->addAction(QIcon(":/icon/wyjscie.png"),"Zamknij");
 
-
-
-  QToolBar *toolbar = addToolBar("Main toolbar");
-  toolbar->setIconSize(QSize(128,32));
-  toolbar->addAction(QIcon(":/icon/house.png"),"Start");
-  toolbar->addSeparator();
-  grupy = toolbar->addAction(QIcon(":/icon/users_5.png"),"Grupy");
-  grupy->setCheckable(true);
-  zajecia = toolbar->addAction(QIcon(":/icon/calendar_add.png"),"Zajecia");
-  zajecia->setCheckable(true);
-  toolbar->addSeparator();
-  toolbar->addAction(QIcon(":/icon/client_account_template.png"),"Kadry");
-  toolbar->addAction(QIcon(":/icon/coins.png"),"Ksiegowosc");
-  toolbar->addAction(QIcon(":/icon/user_oldman.png"),"Zarzad");
-  toolbar->addSeparator();
-  toolbar->addAction(QIcon(":/icon/wyjscie.png"),"Zamknij");
-
-  connect(grupy, SIGNAL(triggered()), this, SLOT(pokazGrupy()));
-  connect(zajecia, SIGNAL(triggered()), this, SLOT(pokazZajecia()));
-
-
+      connect(grupy, SIGNAL(triggered()), this, SLOT(pokazGrupy()));
+      connect(zajecia, SIGNAL(triggered()), this, SLOT(pokazZajecia()));
+      connect(wyjdz, SIGNAL(triggered()), this, SLOT(close()));
+      }
+  else
+  {
+     exit(1);
+  }
 }
 
 MainWindow::~MainWindow()
