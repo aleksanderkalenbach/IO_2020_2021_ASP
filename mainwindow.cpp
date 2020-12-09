@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "login.h"
 #include "grupypanel.h"
+#include "zajeciapanel.h"
 
 #include <QToolBar>
 #include <QIcon>
@@ -25,7 +26,8 @@ MainWindow::MainWindow(QWidget *parent)
   toolbar->addSeparator();
   grupy = toolbar->addAction(QIcon(":/icon/users_5.png"),"Grupy");
   grupy->setCheckable(true);
-  toolbar->addAction(QIcon(":/icon/calendar_add.png"),"Zajecia");
+  zajecia = toolbar->addAction(QIcon(":/icon/calendar_add.png"),"Zajecia");
+  zajecia->setCheckable(true);
   toolbar->addSeparator();
   toolbar->addAction(QIcon(":/icon/client_account_template.png"),"Kadry");
   toolbar->addAction(QIcon(":/icon/coins.png"),"Ksiegowosc");
@@ -34,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
   toolbar->addAction(QIcon(":/icon/wyjscie.png"),"Zamknij");
 
   connect(grupy, SIGNAL(triggered()), this, SLOT(pokazGrupy()));
+  connect(zajecia, SIGNAL(triggered()), this, SLOT(pokazZajecia()));
 
 
 }
@@ -48,6 +51,11 @@ void MainWindow::pokazGrupy()
 
     if(grupy->isChecked())
     {
+        if(zajecia->isChecked())
+        {
+            zajecia->setChecked(false);
+
+        }
         dock->setWindowTitle("Grupy");
         dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
         addDockWidget(Qt::LeftDockWidgetArea, dock);
@@ -63,5 +71,29 @@ void MainWindow::pokazGrupy()
 
 }
 
+void MainWindow::pokazZajecia()
+{
+    zajeciapanel *o = new zajeciapanel(this);
+
+     if(zajecia->isChecked())
+    {
+         if(grupy->isChecked())
+         {
+             grupy->setChecked(false);
+
+         }
+        dock->setWindowTitle("Zajęcia");
+        dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
+        addDockWidget(Qt::LeftDockWidgetArea, dock);
+        dock->setWidget(o);
+
+        o->setMinimumSize(200,300);
+        dock->setVisible(true);
+    }
+    else
+    {
+        dock->setVisible(false);
+    }
+}
 
 
