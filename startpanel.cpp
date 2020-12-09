@@ -12,3 +12,8 @@ startpanel::~startpanel()
 {
     delete ui;
 }
+
+void startpanel::on_pushButton_2_clicked()
+{
+
+}

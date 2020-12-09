@@ -15,6 +15,9 @@ public:
     explicit startpanel(QWidget *parent = nullptr);
     ~startpanel();
 
+private slots:
+    void on_pushButton_2_clicked();
+
 private:
     Ui::startpanel *ui;
 };

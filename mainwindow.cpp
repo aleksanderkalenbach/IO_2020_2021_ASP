@@ -4,12 +4,14 @@
 #include "zajeciapanel.h"
 #include "startpanel.h"
 #include "tableedit_base.h"
+#include "start.h"
 
 #include <QToolBar>
 #include <QIcon>
 #include <QAction>
 #include <QLayout>
 #include <QDockWidget>
+#include <QStackedWidget>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -65,9 +67,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::pokazGrupy()
 {
-
     GrupyPanel *o = new GrupyPanel(this);
     tableedit_base *t = new tableedit_base(this);
+
 
     if(grupy->isChecked())
     {
@@ -89,8 +91,6 @@ void MainWindow::pokazGrupy()
 
         setCentralWidget(t);
 
-
-
         o->setMinimumSize(200,300);
 
 
@@ -100,8 +100,6 @@ void MainWindow::pokazGrupy()
     else
     {
         dock->setVisible(false);
-        t->hide();
-
     }
 
 }
@@ -127,6 +125,8 @@ void MainWindow::pokazZajecia()
         addDockWidget(Qt::LeftDockWidgetArea, dock);
         dock->setWidget(o);
 
+        setCentralWidget(nullptr);
+
         o->setMinimumSize(200,300);
         dock->setVisible(true);
     }
@@ -139,6 +139,8 @@ void MainWindow::pokazZajecia()
 void MainWindow::pokazStart()
 {
     startpanel *o = new startpanel(this);
+    class start *s = new class start(this);
+
 
      if(start->isChecked())
     {
@@ -156,6 +158,8 @@ void MainWindow::pokazStart()
         dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
         addDockWidget(Qt::LeftDockWidgetArea, dock);
         dock->setWidget(o);
+
+        setCentralWidget(s);
 
         o->setMinimumSize(200,300);
         dock->setVisible(true);
