@@ -16,6 +16,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
 
     ~MainWindow();
+    QAction *start;
     QAction *grupy;
     QAction *zajecia;
     QAction *wyjdz;
@@ -27,6 +28,7 @@ public:
 public slots:
     void pokazGrupy();
     void pokazZajecia();
+    void pokazStart();
 
 
 };

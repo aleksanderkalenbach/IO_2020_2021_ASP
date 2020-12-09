@@ -26,28 +26,21 @@
     <item>
      <widget class="QPushButton" name="addGroupButton">
       <property name="text">
-       <string>Dodaj grupę</string>
+       <string>Lista Uczestników</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QPushButton" name="removeGroupButton">
       <property name="text">
-       <string>Usuń grupę</string>
+       <string>Lista Prowadzących</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QPushButton" name="addUserButton">
       <property name="text">
-       <string>Dodaj uczestnika</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="removeUserButton">
-      <property name="text">
-       <string>Usuń uczestnika</string>
+       <string>Lista grup</string>
       </property>
      </widget>
     </item>

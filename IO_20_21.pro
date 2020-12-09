@@ -13,17 +13,23 @@ SOURCES += \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
+    startpanel.cpp \
+    tableedit_base.cpp \
     zajeciapanel.cpp
 
 HEADERS += \
     grupypanel.h \
     login.h \
     mainwindow.h \
+    startpanel.h \
+    tableedit_base.h \
     zajeciapanel.h
 
 FORMS += \
     grupypanel.ui \
     login.ui \
+    startpanel.ui \
+    tableedit_base.ui \
     zajeciapanel.ui
 
 # Default rules for deployment.
