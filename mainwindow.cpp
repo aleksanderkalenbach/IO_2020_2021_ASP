@@ -4,7 +4,6 @@
 #include "zajeciapanel.h"
 #include "startpanel.h"
 #include "tableedit_base.h"
-#include "start.h"
 
 #include <QToolBar>
 #include <QIcon>
@@ -12,6 +11,7 @@
 #include <QLayout>
 #include <QDockWidget>
 #include <QStackedWidget>
+#include <QCalendarWidget>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -107,6 +107,7 @@ void MainWindow::pokazGrupy()
 void MainWindow::pokazZajecia()
 {
     zajeciapanel *o = new zajeciapanel(this);
+    QCalendarWidget *calendar = new QCalendarWidget(this);
 
      if(zajecia->isChecked())
     {
@@ -125,7 +126,7 @@ void MainWindow::pokazZajecia()
         addDockWidget(Qt::LeftDockWidgetArea, dock);
         dock->setWidget(o);
 
-        setCentralWidget(nullptr);
+        setCentralWidget(calendar);
 
         o->setMinimumSize(200,300);
         dock->setVisible(true);
@@ -139,7 +140,6 @@ void MainWindow::pokazZajecia()
 void MainWindow::pokazStart()
 {
     startpanel *o = new startpanel(this);
-    class start *s = new class start(this);
 
 
      if(start->isChecked())
@@ -154,13 +154,12 @@ void MainWindow::pokazStart()
              zajecia->setChecked(false);
 
          }
+        takeCentralWidget();
         dock->setWindowTitle("Start");
         dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
         addDockWidget(Qt::LeftDockWidgetArea, dock);
+
         dock->setWidget(o);
-
-        setCentralWidget(s);
-
         o->setMinimumSize(200,300);
         dock->setVisible(true);
     }
