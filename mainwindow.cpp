@@ -12,6 +12,8 @@
 #include <QDockWidget>
 #include <QStackedWidget>
 #include <QCalendarWidget>
+#include <QtSql>
+#include <QtDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -87,14 +89,35 @@ void MainWindow::pokazGrupy()
         dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
         addDockWidget(Qt::LeftDockWidgetArea, dock);
         dock->setWidget(o);
-
-
+        o->setMinimumSize(200,300);
+        dock->setVisible(true);
         setCentralWidget(t);
 
-        o->setMinimumSize(200,300);
-
-
-        dock->setVisible(true);
+        QString servername = "LOCALHOST";
+        QString dbname = "szkolaPlywacka";
+        QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
+        db.setConnectOptions();
+        QString dsn = QString("DRIVER={SQL SERVER};SERVER=%1;DATABASE=%2;Trusted_Connection=Yes;UID=test;PWD=test;").arg(servername).arg(dbname);
+        db.setDatabaseName(dsn);
+        if(db.open())
+        {
+            qDebug() << "open";
+            QSqlQuery query;
+            if(query.exec("SELECT * FROM [STUDENCI]"))
+            {
+                int i=0;
+                 while(query.next())
+                 {
+                     t->setValue(i, query.value(1).toString(), query.value(2).toString());
+                     i++;
+                 }
+            }
+            db.close();
+        }
+        else
+        {
+            qDebug() << "error = " << db.lastError();
+        }
 
     }
     else

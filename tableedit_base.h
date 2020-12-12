@@ -14,6 +14,7 @@ class tableedit_base : public QWidget
 public:
     explicit tableedit_base(QWidget *parent = nullptr);
     ~tableedit_base();
+    void setValue(int row, QString imie, QString nazwisko);
 
 private:
     Ui::tableedit_base *ui;

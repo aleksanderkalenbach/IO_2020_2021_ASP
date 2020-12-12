@@ -29,7 +29,7 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>25</x>
@@ -48,7 +48,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Nowa kolumna</string>
+        <string>Nazwisko</string>
        </property>
       </column>
       <column>

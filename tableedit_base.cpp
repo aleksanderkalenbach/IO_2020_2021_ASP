@@ -12,3 +12,11 @@ tableedit_base::~tableedit_base()
 {
     delete ui;
 }
+
+void tableedit_base::setValue(int row, QString imie, QString nazwisko)
+{
+    ui->tableWidget->insertRow(row);
+    ui->tableWidget->setItem(row,0,new QTableWidgetItem(imie));
+    ui->tableWidget->setItem(row,1,new QTableWidgetItem(nazwisko));
+}
+
