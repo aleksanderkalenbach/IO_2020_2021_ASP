@@ -13,6 +13,7 @@ SOURCES += \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
+    sqlmodify.cpp \
     startpanel.cpp \
     tableedit_base.cpp \
     zajeciapanel.cpp
@@ -21,6 +22,7 @@ HEADERS += \
     grupypanel.h \
     login.h \
     mainwindow.h \
+    sqlmodify.h \
     startpanel.h \
     tableedit_base.h \
     zajeciapanel.h
@@ -28,6 +30,7 @@ HEADERS += \
 FORMS += \
     grupypanel.ui \
     login.ui \
+    sqlmodify.ui \
     startpanel.ui \
     tableedit_base.ui \
     zajeciapanel.ui

@@ -16,6 +16,11 @@ public:
     ~tableedit_base();
     void setValue(int row, QString imie, QString nazwisko);
 
+private slots:
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
     Ui::tableedit_base *ui;
 };

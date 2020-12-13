@@ -1,5 +1,6 @@
 #include "tableedit_base.h"
 #include "ui_tableedit_base.h"
+#include "sqlmodify.h"
 
 tableedit_base::tableedit_base(QWidget *parent) :
     QWidget(parent),
@@ -20,3 +21,17 @@ void tableedit_base::setValue(int row, QString imie, QString nazwisko)
     ui->tableWidget->setItem(row,1,new QTableWidgetItem(nazwisko));
 }
 
+
+void tableedit_base::on_pushButton_clicked()
+{
+    SqlModify sqlmodify;
+    sqlmodify.setModal(true);
+    sqlmodify.exec();
+
+}
+
+void tableedit_base::on_pushButton_2_clicked()
+{
+
+
+}
