@@ -25,6 +25,8 @@ void SqlModify::on_buttonBox_accepted()
 
     QString Imie = ui->lineImie->text();
     QString Nazwisko = ui->lineNazwisko->text();
+    QString Data_urodzenia = ui->lineDataUrodzenia->text();
+    QString Email = ui->lineEmail->text();
     QString servername = "LOCALHOST";
     QString dbname = "szkolaPlywacka";
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
@@ -35,10 +37,12 @@ void SqlModify::on_buttonBox_accepted()
     {
         qDebug() << "open";
         QSqlQuery query;
-        query.prepare("INSERT INTO Studenci (Imie, Nazwisko)"
-                      "VALUES (?, ?)");
+        query.prepare("INSERT INTO Uczestnik (Imie, Nazwisko, Data_urodzenia, Email, Kwota_do_zaplaty)"
+                      "VALUES (?, ?, ?, ?, 0)");
         query.addBindValue(Imie);
         query.addBindValue(Nazwisko);
+        query.addBindValue(Data_urodzenia);
+        query.addBindValue(Email);
         query.exec();
         db.close();
     }

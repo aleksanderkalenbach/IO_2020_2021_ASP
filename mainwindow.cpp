@@ -93,31 +93,7 @@ void MainWindow::pokazGrupy()
         dock->setVisible(true);
         setCentralWidget(t);
 
-        QString servername = "LOCALHOST";
-        QString dbname = "szkolaPlywacka";
-        QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
-        db.setConnectOptions();
-        QString dsn = QString("DRIVER={SQL SERVER};SERVER=%1;DATABASE=%2;Trusted_Connection=Yes;UID=test;PWD=test;").arg(servername).arg(dbname);
-        db.setDatabaseName(dsn);
-        if(db.open())
-        {
-            qDebug() << "open";
-            QSqlQuery query;
-            if(query.exec("SELECT * FROM [STUDENCI]"))
-            {
-                int i=0;
-                 while(query.next())
-                 {
-                     t->setValue(i, query.value(1).toString(), query.value(2).toString());
-                     i++;
-                 }
-            }
-            db.close();
-        }
-        else
-        {
-            qDebug() << "error = " << db.lastError();
-        }
+        t->on_pushButton_4_clicked();
 
     }
     else

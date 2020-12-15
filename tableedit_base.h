@@ -14,12 +14,17 @@ class tableedit_base : public QWidget
 public:
     explicit tableedit_base(QWidget *parent = nullptr);
     ~tableedit_base();
-    void setValue(int row, QString imie, QString nazwisko);
+    void setValue(int row, QString imie, QString nazwisko, QString dataUrodzenia, QString email, QString kwotaDoZaplaty);
+
+public slots:
+        void on_pushButton_4_clicked();
 
 private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
+
+
 
 private:
     Ui::tableedit_base *ui;
