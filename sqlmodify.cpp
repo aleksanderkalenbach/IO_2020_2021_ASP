@@ -4,6 +4,7 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include "tableedit_base.h"
+#include <QMessageBox>
 
 SqlModify::SqlModify(QWidget *parent) :
     QDialog(parent),
@@ -27,6 +28,13 @@ void SqlModify::on_buttonBox_accepted()
     QString Nazwisko = ui->lineNazwisko->text();
     QString Data_urodzenia = ui->lineDataUrodzenia->text();
     QString Email = ui->lineEmail->text();
+    if(Imie.isEmpty() || Nazwisko.isEmpty() || Data_urodzenia.isEmpty())
+    {
+        QMessageBox messagebox;
+        messagebox.critical(0, "Błąd", "Proszę uzupełnić pola.");
+        this->close();
+        return;
+    }
     QString servername = "LOCALHOST";
     QString dbname = "szkolaPlywacka";
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");

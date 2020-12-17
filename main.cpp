@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "login.h"
 #include "mainwindow.h"
+#include <QtSql>
 
 
 #include <QApplication>

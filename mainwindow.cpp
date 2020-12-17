@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
   Login login;
   if(login.exec() == QDialog::Accepted){
 
+
       setWindowTitle("Szkoła pływania");
       //setCentralWidget(new QWidget(this));
 
@@ -29,11 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
       start = toolbar->addAction(QIcon(":/icon/house.png"),"Start");
       start->setCheckable(true);
 
-
-
-
       toolbar->addSeparator();
-
 
       grupy = toolbar->addAction(QIcon(":/icon/users_5.png"),"Grupy");
       grupy->setCheckable(true);
@@ -49,7 +46,6 @@ MainWindow::MainWindow(QWidget *parent)
           toolbar->addAction(QIcon(":/icon/user_oldman.png"),"Zarzad");
           toolbar->addSeparator();
       }
-
 
       wyjdz = toolbar->addAction(QIcon(":/icon/wyjscie.png"),"Zamknij");
 
@@ -69,8 +65,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::pokazGrupy()
 {
-    GrupyPanel *o = new GrupyPanel(this);
-    tableedit_base *t = new tableedit_base(this);
+    GrupyPanel *lewyPanel = new GrupyPanel(this);
+    tableedit_base *tabela = new tableedit_base(this);
 
 
     if(grupy->isChecked())
@@ -83,17 +79,17 @@ void MainWindow::pokazGrupy()
         if(start->isChecked())
         {
             start->setChecked(false);
-
         }
+
         dock->setWindowTitle("Grupy");
         dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
         addDockWidget(Qt::LeftDockWidgetArea, dock);
-        dock->setWidget(o);
-        o->setMinimumSize(200,300);
+        dock->setWidget(lewyPanel);
+        lewyPanel->setMinimumSize(200,300);
         dock->setVisible(true);
-        setCentralWidget(t);
+        setCentralWidget(tabela);
 
-        t->on_pushButton_4_clicked();
+        tabela->on_pushButton_4_clicked();//wstępne wyświetlenie rekordów
 
     }
     else
@@ -105,7 +101,7 @@ void MainWindow::pokazGrupy()
 
 void MainWindow::pokazZajecia()
 {
-    zajeciapanel *o = new zajeciapanel(this);
+    zajeciapanel *lewyPanel = new zajeciapanel(this);
     QCalendarWidget *calendar = new QCalendarWidget(this);
 
      if(zajecia->isChecked())
@@ -120,14 +116,15 @@ void MainWindow::pokazZajecia()
              start->setChecked(false);
 
          }
+
         dock->setWindowTitle("Zajęcia");
         dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
         addDockWidget(Qt::LeftDockWidgetArea, dock);
-        dock->setWidget(o);
+        dock->setWidget(lewyPanel);
 
         setCentralWidget(calendar);
 
-        o->setMinimumSize(200,300);
+        lewyPanel->setMinimumSize(200,300);
         dock->setVisible(true);
     }
     else
@@ -138,7 +135,7 @@ void MainWindow::pokazZajecia()
 
 void MainWindow::pokazStart()
 {
-    startpanel *o = new startpanel(this);
+    startpanel *lewyPanel = new startpanel(this);
 
 
      if(start->isChecked())
@@ -158,8 +155,8 @@ void MainWindow::pokazStart()
         dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
         addDockWidget(Qt::LeftDockWidgetArea, dock);
 
-        dock->setWidget(o);
-        o->setMinimumSize(200,300);
+        dock->setWidget(lewyPanel);
+        lewyPanel->setMinimumSize(200,300);
         dock->setVisible(true);
     }
     else
