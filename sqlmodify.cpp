@@ -45,8 +45,8 @@ void SqlModify::on_buttonBox_accepted()
     {
         qDebug() << "open";
         QSqlQuery query;
-        query.prepare("INSERT INTO Uczestnik (Imie, Nazwisko, Data_urodzenia, Email, Kwota_do_zaplaty)"
-                      "VALUES (?, ?, ?, ?, 0)");
+        query.prepare("INSERT INTO Uczestnik (Imie, Nazwisko, Data_urodzenia, Email, Kwota_do_zaplaty, Aktywny)"
+                      "VALUES (?, ?, ?, ?, 0, DEFAULT)");
         query.addBindValue(Imie);
         query.addBindValue(Nazwisko);
         query.addBindValue(Data_urodzenia);

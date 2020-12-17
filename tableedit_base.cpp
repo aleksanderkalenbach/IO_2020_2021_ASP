@@ -50,7 +50,7 @@ void tableedit_base::on_pushButton_2_clicked()
     {
         qDebug() << "open";
         QSqlQuery query;
-        query.prepare("delete FROM [Uczestnik] where ID_Uczestnicy = :id");
+        query.prepare("update [Uczestnik] set Aktywny = '0' where ID_Uczestnicy = :id");
         query.bindValue(0, id);
         if(query.exec())
         {
@@ -77,7 +77,7 @@ void tableedit_base::on_pushButton_4_clicked()//funkcja odświeżenia rekordów
     {
         qDebug() << "open";
         QSqlQuery query;
-        if(query.exec("SELECT * FROM [Uczestnik]"))
+        if(query.exec("SELECT * FROM [Uczestnik] where Aktywny = '1'"))
         {
             int i=0;
              while(query.next())
