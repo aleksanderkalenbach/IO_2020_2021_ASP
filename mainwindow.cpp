@@ -4,6 +4,8 @@
 #include "zajeciapanel.h"
 #include "startpanel.h"
 #include "tableedit_base.h"
+#include "tableedit_pracownik.h"
+#include "pracownikpanel.h"
 
 #include <QToolBar>
 #include <QIcon>
@@ -39,11 +41,15 @@ MainWindow::MainWindow(QWidget *parent)
 
       toolbar->addSeparator();
 
-      if(login.login == "Prowadzacy")
+      if(login.login == "hr")
       {
-          toolbar->addAction(QIcon(":/icon/client_account_template.png"),"Kadry");
-          toolbar->addAction(QIcon(":/icon/coins.png"),"Ksiegowosc");
-          toolbar->addAction(QIcon(":/icon/user_oldman.png"),"Zarzad");
+          pracownicy = toolbar->addAction(QIcon(":/icon/client_account_template.png"),"Pracownicy");
+          pracownicy->setCheckable(true);
+
+          connect(pracownicy, SIGNAL(triggered()), this, SLOT(pokazPracownicy()));
+
+          //toolbar->addAction(QIcon(":/icon/coins.png"),"Ksiegowosc");
+          //toolbar->addAction(QIcon(":/icon/user_oldman.png"),"Zarzad");
           toolbar->addSeparator();
       }
 
@@ -52,6 +58,7 @@ MainWindow::MainWindow(QWidget *parent)
       connect(start,SIGNAL(triggered()),this, SLOT(pokazStart()));
       connect(grupy, SIGNAL(triggered()), this, SLOT(pokazGrupy()));
       connect(zajecia, SIGNAL(triggered()), this, SLOT(pokazZajecia()));
+
       connect(wyjdz, SIGNAL(triggered()), this, SLOT(close()));
       }
   else
@@ -68,7 +75,6 @@ void MainWindow::pokazGrupy()
     GrupyPanel *lewyPanel = new GrupyPanel(this);
     tableedit_base *tabela = new tableedit_base(this);
 
-
     if(grupy->isChecked())
     {
         if(zajecia->isChecked())
@@ -80,6 +86,7 @@ void MainWindow::pokazGrupy()
         {
             start->setChecked(false);
         }
+
 
         dock->setWindowTitle("Grupy");
         dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
@@ -117,6 +124,7 @@ void MainWindow::pokazZajecia()
 
          }
 
+
         dock->setWindowTitle("Zajęcia");
         dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
         addDockWidget(Qt::LeftDockWidgetArea, dock);
@@ -150,6 +158,7 @@ void MainWindow::pokazStart()
              zajecia->setChecked(false);
 
          }
+
         takeCentralWidget();
         dock->setWindowTitle("Start");
         dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
@@ -158,6 +167,44 @@ void MainWindow::pokazStart()
         dock->setWidget(lewyPanel);
         lewyPanel->setMinimumSize(200,300);
         dock->setVisible(true);
+    }
+    else
+    {
+        dock->setVisible(false);
+     }
+}
+
+void MainWindow::pokazPracownicy()
+{
+    pracownikpanel *lewyPanel = new pracownikpanel(this);
+    tableedit_pracownik *tabela = new tableedit_pracownik(this);
+
+    if(pracownicy->isChecked())
+    {
+        if(zajecia->isChecked())
+        {
+            zajecia->setChecked(false);
+
+        }
+        if(start->isChecked())
+        {
+            start->setChecked(false);
+        }
+        if(grupy->isChecked())
+        {
+            grupy->setChecked(false);
+        }
+
+        dock->setWindowTitle("Pracownicy");
+        dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
+        addDockWidget(Qt::LeftDockWidgetArea, dock);
+        dock->setWidget(lewyPanel);
+        lewyPanel->setMinimumSize(200,300);
+        dock->setVisible(true);
+        setCentralWidget(tabela);
+
+        tabela->on_pushButton_4_clicked();//wstępne wyświetlenie rekordów
+
     }
     else
     {

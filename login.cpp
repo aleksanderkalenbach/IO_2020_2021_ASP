@@ -24,23 +24,23 @@ void Login::on_pushOK_clicked()
     QString login = ui->lineLogin->text();
     QString haslo = ui->lineHaslo->text();
     this->login = login;
-   // QByteArray ba = haslo.toLocal8Bit();
-    //QCryptographicHash hash(QCryptographicHash::Md5);
-    //hash.addData(ba);
-   // hash.result().toHex();
+    haslo = QString("%1").arg(QString(QCryptographicHash::hash(haslo.toUtf8(),QCryptographicHash::Md5).toHex()));
 
 
-    if(login == "Prowadzacy" && haslo == "qwerty123")
+    if(login == "Prowadzacy" && haslo == "3fc0a7acf087f549ac2b266baf94b8b1")
     {
         accept();
     }
-    else if(login == "Student" && haslo == "qwerty")
+    else if(login == "Student" && haslo == "d8578edf8458ce06fbc5bb76a58c5ca4")
+    {
+        accept();
+    }
+    else if(login == "hr" && haslo == "48474f975022f960bc2afbe49be581e8")
     {
         accept();
     }
     else
     {
         ui->labelMsg->setText("Zły login lub hasło");
-
     }
 }

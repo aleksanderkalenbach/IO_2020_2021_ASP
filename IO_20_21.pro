@@ -13,26 +13,35 @@ SOURCES += \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
+    pracownikpanel.cpp \
     sqlmodify.cpp \
+    sqlmodifypracownik.cpp \
     startpanel.cpp \
     tableedit_base.cpp \
+    tableedit_pracownik.cpp \
     zajeciapanel.cpp
 
 HEADERS += \
     grupypanel.h \
     login.h \
     mainwindow.h \
+    pracownikpanel.h \
     sqlmodify.h \
+    sqlmodifypracownik.h \
     startpanel.h \
     tableedit_base.h \
+    tableedit_pracownik.h \
     zajeciapanel.h
 
 FORMS += \
     grupypanel.ui \
     login.ui \
+    pracownikpanel.ui \
     sqlmodify.ui \
+    sqlmodifypracownik.ui \
     startpanel.ui \
     tableedit_base.ui \
+    tableedit_pracownik.ui \
     zajeciapanel.ui
 
 # Default rules for deployment.
