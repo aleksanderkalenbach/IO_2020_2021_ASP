@@ -15,9 +15,12 @@ SOURCES += \
     mainwindow.cpp \
     pracownikpanel.cpp \
     sqlmodify.cpp \
+    sqlmodifykurs.cpp \
     sqlmodifypracownik.cpp \
     startpanel.cpp \
     tableedit_base.cpp \
+    tableedit_kursy_pracownik.cpp \
+    tableedit_kursy_student.cpp \
     tableedit_pracownik.cpp \
     zajeciapanel.cpp
 
@@ -27,9 +30,12 @@ HEADERS += \
     mainwindow.h \
     pracownikpanel.h \
     sqlmodify.h \
+    sqlmodifykurs.h \
     sqlmodifypracownik.h \
     startpanel.h \
     tableedit_base.h \
+    tableedit_kursy_pracownik.h \
+    tableedit_kursy_student.h \
     tableedit_pracownik.h \
     zajeciapanel.h
 
@@ -38,9 +44,12 @@ FORMS += \
     login.ui \
     pracownikpanel.ui \
     sqlmodify.ui \
+    sqlmodifykurs.ui \
     sqlmodifypracownik.ui \
     startpanel.ui \
     tableedit_base.ui \
+    tableedit_kursy_pracownik.ui \
+    tableedit_kursy_student.ui \
     tableedit_pracownik.ui \
     zajeciapanel.ui
 

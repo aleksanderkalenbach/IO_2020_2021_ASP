@@ -19,6 +19,7 @@ public:
     QAction *start;
     QAction *grupy;
     QAction *zajecia;
+    QAction *kursy;
     QAction *wyjdz;
     QAction *pracownicy;
     QDockWidget *dock = new QDockWidget();
@@ -29,6 +30,8 @@ public:
 public slots:
     void pokazGrupy();
     void pokazZajecia();
+    void pokazKursy();
+    void pokazKursyPracownik();
     void pokazStart();
     void pokazPracownicy();
 

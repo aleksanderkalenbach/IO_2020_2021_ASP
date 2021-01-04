@@ -1,8 +1,9 @@
 #include "sqlmodifypracownik.h"
 #include "ui_sqlmodifypracownik.h"
+#include "tableedit_pracownik.h"
+
 #include <QSqlQuery>
 #include <QDebug>
-#include "tableedit_pracownik.h"
 #include <QMessageBox>
 
 sqlmodifypracownik::sqlmodifypracownik(QWidget *parent) :
@@ -42,7 +43,7 @@ void sqlmodifypracownik::on_buttonBox_accepted()
         qDebug() << "open";
         QSqlQuery query;
         query.prepare("INSERT INTO Pracownik (Imie, Nazwisko, Data_urodzenia, Email, Telefon, Aktywny)"
-                      "VALUES (?, ?, ?, ?, 0, DEFAULT)");
+                      "VALUES (?, ?, ?, ?, ?, DEFAULT)");
         query.addBindValue(Imie);
         query.addBindValue(Nazwisko);
         query.addBindValue(Data_urodzenia);

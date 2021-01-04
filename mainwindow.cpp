@@ -6,6 +6,9 @@
 #include "tableedit_base.h"
 #include "tableedit_pracownik.h"
 #include "pracownikpanel.h"
+#include "tableedit_kursy_student.h"
+#include "tableedit_kursy_pracownik.h"
+
 
 #include <QToolBar>
 #include <QIcon>
@@ -38,6 +41,13 @@ MainWindow::MainWindow(QWidget *parent)
       grupy->setCheckable(true);
       zajecia = toolbar->addAction(QIcon(":/icon/calendar_add.png"),"Zajecia");
       zajecia->setCheckable(true);
+      kursy = toolbar->addAction(QIcon(":/icon/calendar_add.png"),"Kursy");
+      kursy->setCheckable(true);
+
+
+
+
+
 
       toolbar->addSeparator();
 
@@ -58,6 +68,14 @@ MainWindow::MainWindow(QWidget *parent)
       connect(start,SIGNAL(triggered()),this, SLOT(pokazStart()));
       connect(grupy, SIGNAL(triggered()), this, SLOT(pokazGrupy()));
       connect(zajecia, SIGNAL(triggered()), this, SLOT(pokazZajecia()));
+      if(login.login == "Student")
+      {
+          connect(kursy, SIGNAL(triggered()), this, SLOT(pokazKursy()));
+      }
+      else
+      {
+          connect(kursy, SIGNAL(triggered()), this, SLOT(pokazKursyPracownik()));
+      }
 
       connect(wyjdz, SIGNAL(triggered()), this, SLOT(close()));
       }
@@ -85,6 +103,10 @@ void MainWindow::pokazGrupy()
         if(start->isChecked())
         {
             start->setChecked(false);
+        }
+        if(kursy->isChecked())
+        {
+            kursy->setChecked(false);
         }
 
 
@@ -121,7 +143,10 @@ void MainWindow::pokazZajecia()
          if(start->isChecked())
          {
              start->setChecked(false);
-
+         }
+         if(kursy->isChecked())
+         {
+             kursy->setChecked(false);
          }
 
 
@@ -134,6 +159,84 @@ void MainWindow::pokazZajecia()
 
         lewyPanel->setMinimumSize(200,300);
         dock->setVisible(true);
+    }
+    else
+    {
+        dock->setVisible(false);
+     }
+}
+
+void MainWindow::pokazKursy()
+{
+    GrupyPanel *lewyPanel = new GrupyPanel(this);
+    tableedit_kursy_student *tabela = new tableedit_kursy_student(this);
+
+    if(kursy->isChecked())
+    {
+        if(zajecia->isChecked())
+        {
+            zajecia->setChecked(false);
+
+        }
+        if(start->isChecked())
+        {
+            start->setChecked(false);
+        }
+        if(grupy->isChecked())
+        {
+            grupy->setCheckable(false);
+        }
+
+
+        dock->setWindowTitle("Kursy");
+        dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
+        addDockWidget(Qt::LeftDockWidgetArea, dock);
+        dock->setWidget(lewyPanel);
+        lewyPanel->setMinimumSize(200,300);
+        dock->setVisible(true);
+        setCentralWidget(tabela);
+
+        tabela->on_pushButton_odswiez_clicked();//wstępne wyświetlenie rekordów
+
+    }
+    else
+    {
+        dock->setVisible(false);
+    }
+}
+
+void MainWindow::pokazKursyPracownik()
+{
+    GrupyPanel *lewyPanel = new GrupyPanel(this);
+    tableedit_kursy_pracownik *tabela = new tableedit_kursy_pracownik(this);
+
+    if(kursy->isChecked())
+    {
+        if(zajecia->isChecked())
+        {
+            zajecia->setChecked(false);
+
+        }
+        if(start->isChecked())
+        {
+            start->setChecked(false);
+        }
+        if(grupy->isChecked())
+        {
+            grupy->setCheckable(false);
+        }
+
+
+        dock->setWindowTitle("Kursy");
+        dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
+        addDockWidget(Qt::LeftDockWidgetArea, dock);
+        dock->setWidget(lewyPanel);
+        lewyPanel->setMinimumSize(200,300);
+        dock->setVisible(true);
+        setCentralWidget(tabela);
+
+        tabela->on_pushButton_odswiez_clicked();//wstępne wyświetlenie rekordów
+
     }
     else
     {
@@ -156,7 +259,10 @@ void MainWindow::pokazStart()
          if(zajecia->isChecked())
          {
              zajecia->setChecked(false);
-
+         }
+         if(kursy->isChecked())
+         {
+             kursy->setChecked(false);
          }
 
         takeCentralWidget();
@@ -193,6 +299,10 @@ void MainWindow::pokazPracownicy()
         if(grupy->isChecked())
         {
             grupy->setChecked(false);
+        }
+        if(kursy->isChecked())
+        {
+            kursy->setChecked(false);
         }
 
         dock->setWindowTitle("Pracownicy");

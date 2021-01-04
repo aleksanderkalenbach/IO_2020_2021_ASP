@@ -72,7 +72,7 @@ void tableedit_pracownik::on_pushButton_3_clicked()
     QString Nazwisko = ui->tableWidget->model()->index(wiersz,2).data().toString();
     QDateTime Data_urodzenia = ui->tableWidget->model()->index(wiersz,3).data().toDateTime();
     QString Email = ui->tableWidget->model()->index(wiersz,4).data().toString();
-    QString Telefon = ui->tableWidget->model()->index(wiersz,4).data().toString();
+    QString Telefon = ui->tableWidget->model()->index(wiersz,5).data().toString();
 
     QString servername = "LOCALHOST";
     QString dbname = "szkolaPlywacka";
