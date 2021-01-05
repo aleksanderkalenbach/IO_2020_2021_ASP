@@ -8,6 +8,7 @@
 #include "pracownikpanel.h"
 #include "tableedit_kursy_student.h"
 #include "tableedit_kursy_pracownik.h"
+#include "tableedit_spotkanie.h"
 
 
 #include <QToolBar>
@@ -131,7 +132,8 @@ void MainWindow::pokazGrupy()
 void MainWindow::pokazZajecia()
 {
     zajeciapanel *lewyPanel = new zajeciapanel(this);
-    QCalendarWidget *calendar = new QCalendarWidget(this);
+    tableedit_spotkanie *tabela = new tableedit_spotkanie(this);
+    //QCalendarWidget *calendar = new QCalendarWidget(this);
 
      if(zajecia->isChecked())
     {
@@ -155,10 +157,12 @@ void MainWindow::pokazZajecia()
         addDockWidget(Qt::LeftDockWidgetArea, dock);
         dock->setWidget(lewyPanel);
 
-        setCentralWidget(calendar);
+        //setCentralWidget(calendar);
 
         lewyPanel->setMinimumSize(200,300);
         dock->setVisible(true);
+        setCentralWidget(tabela);
+        tabela->on_pushButton_odswiez_clicked();
     }
     else
     {

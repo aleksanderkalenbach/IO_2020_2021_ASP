@@ -17,11 +17,13 @@ SOURCES += \
     sqlmodify.cpp \
     sqlmodifykurs.cpp \
     sqlmodifypracownik.cpp \
+    sqlmodifyspotkanie.cpp \
     startpanel.cpp \
     tableedit_base.cpp \
     tableedit_kursy_pracownik.cpp \
     tableedit_kursy_student.cpp \
     tableedit_pracownik.cpp \
+    tableedit_spotkanie.cpp \
     zajeciapanel.cpp
 
 HEADERS += \
@@ -32,11 +34,13 @@ HEADERS += \
     sqlmodify.h \
     sqlmodifykurs.h \
     sqlmodifypracownik.h \
+    sqlmodifyspotkanie.h \
     startpanel.h \
     tableedit_base.h \
     tableedit_kursy_pracownik.h \
     tableedit_kursy_student.h \
     tableedit_pracownik.h \
+    tableedit_spotkanie.h \
     zajeciapanel.h
 
 FORMS += \
@@ -46,11 +50,13 @@ FORMS += \
     sqlmodify.ui \
     sqlmodifykurs.ui \
     sqlmodifypracownik.ui \
+    sqlmodifyspotkanie.ui \
     startpanel.ui \
     tableedit_base.ui \
     tableedit_kursy_pracownik.ui \
     tableedit_kursy_student.ui \
     tableedit_pracownik.ui \
+    tableedit_spotkanie.ui \
     zajeciapanel.ui
 
 # Default rules for deployment.
