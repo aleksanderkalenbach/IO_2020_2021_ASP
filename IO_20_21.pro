@@ -22,6 +22,7 @@ SOURCES += \
     tableedit_base.cpp \
     tableedit_kursy_pracownik.cpp \
     tableedit_kursy_student.cpp \
+    tableedit_obecnosci.cpp \
     tableedit_pracownik.cpp \
     tableedit_spotkanie.cpp \
     zajeciapanel.cpp
@@ -39,6 +40,7 @@ HEADERS += \
     tableedit_base.h \
     tableedit_kursy_pracownik.h \
     tableedit_kursy_student.h \
+    tableedit_obecnosci.h \
     tableedit_pracownik.h \
     tableedit_spotkanie.h \
     zajeciapanel.h
@@ -55,6 +57,7 @@ FORMS += \
     tableedit_base.ui \
     tableedit_kursy_pracownik.ui \
     tableedit_kursy_student.ui \
+    tableedit_obecnosci.ui \
     tableedit_pracownik.ui \
     tableedit_spotkanie.ui \
     zajeciapanel.ui

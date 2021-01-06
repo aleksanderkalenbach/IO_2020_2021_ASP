@@ -8,6 +8,12 @@ zajeciapanel::zajeciapanel(QWidget *parent) :
     ui->setupUi(this);
 }
 
+
+void zajeciapanel::on_pushButton_2_clicked()
+{
+    tableedit_obecnosci* t = new tableedit_obecnosci();
+    t->show();
+}
 zajeciapanel::~zajeciapanel()
 {
     delete ui;

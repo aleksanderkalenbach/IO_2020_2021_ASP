@@ -33,7 +33,7 @@
     <item>
      <widget class="QPushButton" name="pushButton_2">
       <property name="text">
-       <string>Kalendarz zajęć</string>
+       <string>Obecność</string>
       </property>
      </widget>
     </item>
