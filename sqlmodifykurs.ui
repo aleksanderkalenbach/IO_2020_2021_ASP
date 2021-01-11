@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>589</width>
-    <height>293</height>
+    <width>413</width>
+    <height>253</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -111,7 +111,7 @@
            <widget class="QLineEdit" name="lineWiek"/>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineID"/>
+           <widget class="QComboBox" name="comboBoxID"/>
           </item>
          </layout>
         </item>
@@ -133,5 +133,38 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>sqlmodifykurs</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>340</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>412</x>
+     <y>252</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>sqlmodifykurs</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>245</x>
+     <y>236</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>214</x>
+     <y>250</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

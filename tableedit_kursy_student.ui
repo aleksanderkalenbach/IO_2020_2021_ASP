@@ -25,13 +25,18 @@
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="3" column="0">
      <layout class="QGridLayout" name="gridLayout_4">
+      <item row="1" column="0" colspan="2">
+       <widget class="QPushButton" name="pushButton_odswiez">
+        <property name="text">
+         <string>Odśwież</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="0" colspan="2">
        <widget class="QTableWidget" name="tableWidget_2">
-        <column>
-         <property name="text">
-          <string>ID</string>
-         </property>
-        </column>
+        <attribute name="horizontalHeaderDefaultSectionSize">
+         <number>150</number>
+        </attribute>
         <column>
          <property name="text">
           <string>Nazwa</string>
@@ -62,13 +67,11 @@
           <string>Wymagany wiek</string>
          </property>
         </column>
-       </widget>
-      </item>
-      <item row="1" column="0" colspan="2">
-       <widget class="QPushButton" name="pushButton_odswiez">
-        <property name="text">
-         <string>Odśwież</string>
-        </property>
+        <column>
+         <property name="text">
+          <string>Prowadzący</string>
+         </property>
+        </column>
        </widget>
       </item>
      </layout>

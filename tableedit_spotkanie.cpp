@@ -118,6 +118,7 @@ void tableedit_spotkanie::on_pushButton_odswiez_clicked()
                  setValue(i, query.value(0).toString(), query.value(1).toString(), query.value(2).toString());
                  i++;
              }
+             ui->tableWidget->resizeColumnsToContents();
         }
         db.close();
     }

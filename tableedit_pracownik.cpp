@@ -121,6 +121,7 @@ void tableedit_pracownik::on_pushButton_4_clicked()
                  setValue(i, query.value(0).toString(), query.value(1).toString(), query.value(2).toString(), query.value(3).toString(), query.value(4).toString(), query.value(5).toString());
                  i++;
              }
+             ui->tableWidget->resizeColumnsToContents();
         }
         db.close();
     }

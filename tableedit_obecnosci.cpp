@@ -45,6 +45,7 @@ void tableedit_obecnosci::on_pushButton_2_clicked()
                  setValue(i, query.value(0).toString(), query.value(1).toString(), query.value(2).toString());
                  i++;
              }
+             ui->tableWidget->resizeColumnsToContents();
         }
         db.close();
     }

@@ -48,11 +48,9 @@
       </item>
       <item row="0" column="0" colspan="4">
        <widget class="QTableWidget" name="tableWidget">
-        <column>
-         <property name="text">
-          <string>ID</string>
-         </property>
-        </column>
+        <attribute name="horizontalHeaderDefaultSectionSize">
+         <number>150</number>
+        </attribute>
         <column>
          <property name="text">
           <string>Nazwa</string>
@@ -81,6 +79,11 @@
         <column>
          <property name="text">
           <string>Wymagany wiek</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Prowadzący</string>
          </property>
         </column>
        </widget>

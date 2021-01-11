@@ -14,7 +14,7 @@ class tableedit_kursy_student : public QWidget
 public:
     explicit tableedit_kursy_student(QWidget *parent = nullptr);
     ~tableedit_kursy_student();
-    void setValue(int row, QString id, QString nazwa, QString data_rozpoczecia, QString data_zakonczenia, QString cena, QString poziom, QString wiek);
+    void setValue(int row, QString nazwa, QString data_rozpoczecia, QString data_zakonczenia, QString cena, QString poziom, QString wiek, QString prowadzacy);
 
 public slots:
     void on_pushButton_odswiez_clicked();
