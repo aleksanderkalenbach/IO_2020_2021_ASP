@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Tabela rekordów</string>
+    <string>Uczestnicy</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -55,11 +55,6 @@
     </item>
     <item row="0" column="0" colspan="4">
      <widget class="QTableWidget" name="tableWidget">
-      <column>
-       <property name="text">
-        <string>ID</string>
-       </property>
-      </column>
       <column>
        <property name="text">
         <string>Imię</string>

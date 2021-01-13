@@ -1,15 +1,12 @@
 #include "mainwindow.h"
 #include "login.h"
-#include "grupypanel.h"
-#include "zajeciapanel.h"
 #include "startpanel.h"
 #include "tableedit_base.h"
 #include "tableedit_pracownik.h"
-#include "pracownikpanel.h"
 #include "tableedit_kursy_student.h"
 #include "tableedit_kursy_pracownik.h"
 #include "tableedit_spotkanie.h"
-
+#include "tableedit_obecnosci.h"
 
 #include <QToolBar>
 #include <QIcon>
@@ -44,6 +41,8 @@ MainWindow::MainWindow(QWidget *parent)
       zajecia->setCheckable(true);
       kursy = toolbar->addAction(QIcon(":/icon/calendar_add.png"),"Kursy");
       kursy->setCheckable(true);
+      obecnosc = toolbar->addAction(QIcon(":/icon/users_5.png"),"Obecnosc");
+      obecnosc->setCheckable(true);
 
 
 
@@ -69,6 +68,8 @@ MainWindow::MainWindow(QWidget *parent)
       connect(start,SIGNAL(triggered()),this, SLOT(pokazStart()));
       connect(grupy, SIGNAL(triggered()), this, SLOT(pokazGrupy()));
       connect(zajecia, SIGNAL(triggered()), this, SLOT(pokazZajecia()));
+      connect(obecnosc, SIGNAL(triggered()),this,SLOT(pokazObecnosc()));
+
       if(login.login == "Student")
       {
           connect(kursy, SIGNAL(triggered()), this, SLOT(pokazKursy()));
@@ -91,11 +92,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::pokazGrupy()
 {
-    GrupyPanel *lewyPanel = new GrupyPanel(this);
+
     tableedit_base *tabela = new tableedit_base(this);
 
-    if(grupy->isChecked())
-    {
+
         if(zajecia->isChecked())
         {
             zajecia->setChecked(false);
@@ -110,33 +110,19 @@ void MainWindow::pokazGrupy()
             kursy->setChecked(false);
         }
 
-
-        dock->setWindowTitle("Grupy");
-        dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
-        addDockWidget(Qt::LeftDockWidgetArea, dock);
-        dock->setWidget(lewyPanel);
-        lewyPanel->setMinimumSize(200,300);
-        dock->setVisible(true);
         setCentralWidget(tabela);
 
         tabela->on_pushButton_4_clicked();//wstępne wyświetlenie rekordów
 
-    }
-    else
-    {
-        dock->setVisible(false);
-    }
+
 
 }
 
 void MainWindow::pokazZajecia()
 {
-    zajeciapanel *lewyPanel = new zajeciapanel(this);
-    tableedit_spotkanie *tabela = new tableedit_spotkanie(this);
-    //QCalendarWidget *calendar = new QCalendarWidget(this);
 
-     if(zajecia->isChecked())
-    {
+    tableedit_spotkanie *tabela = new tableedit_spotkanie(this);
+
          if(grupy->isChecked())
          {
              grupy->setChecked(false);
@@ -151,32 +137,17 @@ void MainWindow::pokazZajecia()
              kursy->setChecked(false);
          }
 
-
-        dock->setWindowTitle("Zajęcia");
-        dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
-        addDockWidget(Qt::LeftDockWidgetArea, dock);
-        dock->setWidget(lewyPanel);
-
-        //setCentralWidget(calendar);
-
-        lewyPanel->setMinimumSize(200,300);
-        dock->setVisible(true);
         setCentralWidget(tabela);
         tabela->on_pushButton_odswiez_clicked();
-    }
-    else
-    {
-        dock->setVisible(false);
-     }
+
 }
 
 void MainWindow::pokazKursy()
 {
-    GrupyPanel *lewyPanel = new GrupyPanel(this);
+
     tableedit_kursy_student *tabela = new tableedit_kursy_student(this);
 
-    if(kursy->isChecked())
-    {
+
         if(zajecia->isChecked())
         {
             zajecia->setChecked(false);
@@ -191,31 +162,17 @@ void MainWindow::pokazKursy()
             grupy->setCheckable(false);
         }
 
-
-        dock->setWindowTitle("Kursy");
-        dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
-        addDockWidget(Qt::LeftDockWidgetArea, dock);
-        dock->setWidget(lewyPanel);
-        lewyPanel->setMinimumSize(200,300);
-        dock->setVisible(true);
         setCentralWidget(tabela);
 
         tabela->on_pushButton_odswiez_clicked();//wstępne wyświetlenie rekordów
 
-    }
-    else
-    {
-        dock->setVisible(false);
-    }
 }
 
 void MainWindow::pokazKursyPracownik()
 {
-    GrupyPanel *lewyPanel = new GrupyPanel(this);
     tableedit_kursy_pracownik *tabela = new tableedit_kursy_pracownik(this);
 
-    if(kursy->isChecked())
-    {
+
         if(zajecia->isChecked())
         {
             zajecia->setChecked(false);
@@ -231,21 +188,11 @@ void MainWindow::pokazKursyPracownik()
         }
 
 
-        dock->setWindowTitle("Kursy");
-        dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
-        addDockWidget(Qt::LeftDockWidgetArea, dock);
-        dock->setWidget(lewyPanel);
-        lewyPanel->setMinimumSize(200,300);
-        dock->setVisible(true);
         setCentralWidget(tabela);
 
         tabela->on_pushButton_odswiez_clicked();//wstępne wyświetlenie rekordów
 
-    }
-    else
-    {
-        dock->setVisible(false);
-    }
+
 }
 
 void MainWindow::pokazStart()
@@ -286,11 +233,8 @@ void MainWindow::pokazStart()
 
 void MainWindow::pokazPracownicy()
 {
-    pracownikpanel *lewyPanel = new pracownikpanel(this);
     tableedit_pracownik *tabela = new tableedit_pracownik(this);
 
-    if(pracownicy->isChecked())
-    {
         if(zajecia->isChecked())
         {
             zajecia->setChecked(false);
@@ -309,21 +253,40 @@ void MainWindow::pokazPracownicy()
             kursy->setChecked(false);
         }
 
-        dock->setWindowTitle("Pracownicy");
-        dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
-        addDockWidget(Qt::LeftDockWidgetArea, dock);
-        dock->setWidget(lewyPanel);
-        lewyPanel->setMinimumSize(200,300);
-        dock->setVisible(true);
         setCentralWidget(tabela);
 
         tabela->on_pushButton_4_clicked();//wstępne wyświetlenie rekordów
 
-    }
-    else
-    {
-        dock->setVisible(false);
-    }
+
+}
+
+void MainWindow::pokazObecnosc()
+{
+    tableedit_obecnosci *tabela = new tableedit_obecnosci(this);
+
+        if(zajecia->isChecked())
+        {
+            zajecia->setChecked(false);
+
+        }
+        if(start->isChecked())
+        {
+            start->setChecked(false);
+        }
+        if(grupy->isChecked())
+        {
+            grupy->setChecked(false);
+        }
+        if(kursy->isChecked())
+        {
+            kursy->setChecked(false);
+        }
+
+        setCentralWidget(tabela);
+
+        tabela->on_pushButton_2_clicked();//wstępne wyświetlenie rekordów
+
+
 }
 
 
