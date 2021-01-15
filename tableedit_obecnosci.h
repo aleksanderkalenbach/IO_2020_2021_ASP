@@ -13,7 +13,7 @@ class tableedit_obecnosci : public QWidget
 
 public:
     explicit tableedit_obecnosci(QWidget *parent = nullptr);
-    void setValue(int row, QString id, QString uczestnik, QString zajecia);
+    void setValue(int row, QString uczestnik, QString zajecia);
     ~tableedit_obecnosci();
 
 public slots:

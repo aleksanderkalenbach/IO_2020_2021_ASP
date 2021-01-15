@@ -2,6 +2,7 @@
 #define TABLEEDIT_BASE_H
 
 #include <QWidget>
+#include <QBoxLayout>
 
 namespace Ui {
 class tableedit_base;
@@ -16,6 +17,7 @@ public:
     ~tableedit_base();
     void setValue(int row, QString imie, QString nazwisko, QString dataUrodzenia, QString email, QString kwotaDoZaplaty);
     //Ui::tableedit_base *zwrocUI() {return ui;};
+    QBoxLayout* tableLayout;
 
 public slots:
     void on_pushButton_4_clicked();

@@ -19,6 +19,7 @@ SOURCES += \
     sqlmodifypracownik.cpp \
     sqlmodifyspotkanie.cpp \
     startpanel.cpp \
+    startview.cpp \
     tableedit_base.cpp \
     tableedit_kursy_pracownik.cpp \
     tableedit_kursy_student.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     sqlmodifypracownik.h \
     sqlmodifyspotkanie.h \
     startpanel.h \
+    startview.h \
     tableedit_base.h \
     tableedit_kursy_pracownik.h \
     tableedit_kursy_student.h \
@@ -54,6 +56,7 @@ FORMS += \
     sqlmodifypracownik.ui \
     sqlmodifyspotkanie.ui \
     startpanel.ui \
+    startview.ui \
     tableedit_base.ui \
     tableedit_kursy_pracownik.ui \
     tableedit_kursy_student.ui \

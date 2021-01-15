@@ -1,12 +1,12 @@
 #include "mainwindow.h"
 #include "login.h"
-#include "startpanel.h"
 #include "tableedit_base.h"
 #include "tableedit_pracownik.h"
 #include "tableedit_kursy_student.h"
 #include "tableedit_kursy_pracownik.h"
 #include "tableedit_spotkanie.h"
 #include "tableedit_obecnosci.h"
+#include "startview.h"
 
 #include <QToolBar>
 #include <QIcon>
@@ -24,24 +24,26 @@ MainWindow::MainWindow(QWidget *parent)
   Login login;
   if(login.exec() == QDialog::Accepted){
 
-
       setWindowTitle("Szkoła pływania");
       //setCentralWidget(new QWidget(this));
+
+
 
       QToolBar *toolbar = addToolBar("Main toolbar");
       toolbar->setIconSize(QSize(128,32));
       start = toolbar->addAction(QIcon(":/icon/house.png"),"Start");
       start->setCheckable(true);
 
+
       toolbar->addSeparator();
 
-      grupy = toolbar->addAction(QIcon(":/icon/users_5.png"),"Grupy");
+      grupy = toolbar->addAction(QIcon(":/icon/users_5.png"),"Uczestnicy");
       grupy->setCheckable(true);
-      zajecia = toolbar->addAction(QIcon(":/icon/calendar_add.png"),"Zajecia");
+      zajecia = toolbar->addAction(QIcon(":/icon/meeting_workspace.png"),"Zajecia");
       zajecia->setCheckable(true);
       kursy = toolbar->addAction(QIcon(":/icon/calendar_add.png"),"Kursy");
       kursy->setCheckable(true);
-      obecnosc = toolbar->addAction(QIcon(":/icon/users_5.png"),"Obecnosc");
+      obecnosc = toolbar->addAction(QIcon(":/icon/accept_document"),"Obecnosc");
       obecnosc->setCheckable(true);
 
 
@@ -109,6 +111,10 @@ void MainWindow::pokazGrupy()
         {
             kursy->setChecked(false);
         }
+        if(obecnosc->isChecked())
+        {
+            obecnosc->setChecked(false);
+        }
 
         setCentralWidget(tabela);
 
@@ -136,6 +142,10 @@ void MainWindow::pokazZajecia()
          {
              kursy->setChecked(false);
          }
+         if(obecnosc->isChecked())
+         {
+             obecnosc->setChecked(false);
+         }
 
         setCentralWidget(tabela);
         tabela->on_pushButton_odswiez_clicked();
@@ -160,6 +170,10 @@ void MainWindow::pokazKursy()
         if(grupy->isChecked())
         {
             grupy->setCheckable(false);
+        }
+        if(obecnosc->isChecked())
+        {
+            obecnosc->setChecked(false);
         }
 
         setCentralWidget(tabela);
@@ -186,6 +200,10 @@ void MainWindow::pokazKursyPracownik()
         {
             grupy->setCheckable(false);
         }
+        if(obecnosc->isChecked())
+        {
+            obecnosc->setChecked(false);
+        }
 
 
         setCentralWidget(tabela);
@@ -197,11 +215,9 @@ void MainWindow::pokazKursyPracownik()
 
 void MainWindow::pokazStart()
 {
-    startpanel *lewyPanel = new startpanel(this);
 
+    StartView *start =  new StartView(this);
 
-     if(start->isChecked())
-    {
          if(grupy->isChecked())
          {
              grupy->setChecked(false);
@@ -215,20 +231,13 @@ void MainWindow::pokazStart()
          {
              kursy->setChecked(false);
          }
+         if(obecnosc->isChecked())
+         {
+             obecnosc->setChecked(false);
+         }
 
-        takeCentralWidget();
-        dock->setWindowTitle("Start");
-        dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetClosable & ~QDockWidget::DockWidgetMovable & ~QDockWidget::DockWidgetFloatable); // wylacza przesuwanie widgetu
-        addDockWidget(Qt::LeftDockWidgetArea, dock);
+         setCentralWidget(start);
 
-        dock->setWidget(lewyPanel);
-        lewyPanel->setMinimumSize(200,300);
-        dock->setVisible(true);
-    }
-    else
-    {
-        dock->setVisible(false);
-     }
 }
 
 void MainWindow::pokazPracownicy()
@@ -251,6 +260,10 @@ void MainWindow::pokazPracownicy()
         if(kursy->isChecked())
         {
             kursy->setChecked(false);
+        }
+        if(obecnosc->isChecked())
+        {
+            obecnosc->setChecked(false);
         }
 
         setCentralWidget(tabela);

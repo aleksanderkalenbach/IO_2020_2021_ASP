@@ -10,12 +10,11 @@ tableedit_obecnosci::tableedit_obecnosci(QWidget *parent) :
     ui->setupUi(this);
 }
 
-void tableedit_obecnosci::setValue(int row, QString id, QString uczestnik, QString zajecia)
+void tableedit_obecnosci::setValue(int row, QString uczestnik, QString zajecia)
 {
     ui->tableWidget->insertRow(row);
-    ui->tableWidget->setItem(row,0,new QTableWidgetItem(id));
-    ui->tableWidget->setItem(row,1,new QTableWidgetItem(uczestnik));
-    ui->tableWidget->setItem(row,2,new QTableWidgetItem(zajecia));
+    ui->tableWidget->setItem(row,0,new QTableWidgetItem(uczestnik));
+    ui->tableWidget->setItem(row,1,new QTableWidgetItem(zajecia));
 
 }
 
@@ -42,7 +41,7 @@ void tableedit_obecnosci::on_pushButton_2_clicked()
             int i=0;
              while(query.next())
              {
-                 setValue(i, query.value(0).toString(), query.value(1).toString(), query.value(2).toString());
+                 setValue(i, query.value(0).toString(), query.value(1).toString());
                  i++;
              }
              ui->tableWidget->resizeColumnsToContents();

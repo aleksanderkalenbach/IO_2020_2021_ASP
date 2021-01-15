@@ -7,8 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>1181</width>
-    <height>634</height>
+    <height>618</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -17,14 +23,28 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>30</y>
-     <width>1121</width>
-     <height>561</height>
+     <y>20</y>
+     <width>1151</width>
+     <height>581</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="3" column="0">
      <layout class="QGridLayout" name="gridLayout_4">
+      <item row="1" column="1">
+       <widget class="QPushButton" name="pushButton_usun">
+        <property name="text">
+         <string>Usuń</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QPushButton" name="pushButton_odswiez">
+        <property name="text">
+         <string>Odśwież</string>
+        </property>
+       </widget>
+      </item>
       <item row="1" column="0">
        <widget class="QPushButton" name="pushButton_dodaj">
         <property name="text">
@@ -36,13 +56,6 @@
        <widget class="QPushButton" name="pushButton_zmien">
         <property name="text">
          <string>Zmień</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QPushButton" name="pushButton_odswiez">
-        <property name="text">
-         <string>Odśwież</string>
         </property>
        </widget>
       </item>
@@ -86,13 +99,6 @@
           <string>Prowadzący</string>
          </property>
         </column>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="pushButton_usun">
-        <property name="text">
-         <string>Usuń</string>
-        </property>
        </widget>
       </item>
      </layout>

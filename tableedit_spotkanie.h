@@ -14,7 +14,7 @@ class tableedit_spotkanie : public QWidget
 public:
     explicit tableedit_spotkanie(QWidget *parent = nullptr);
     ~tableedit_spotkanie();
-    void setValue(int row, QString id, QString data, QString grupa);
+    void setValue(int row, QString data, QString grupa);
 
 public slots:
     void on_pushButton_odswiez_clicked();

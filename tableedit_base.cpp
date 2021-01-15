@@ -3,12 +3,16 @@
 #include "sqlmodify.h"
 #include <QtSql>
 #include <QtDebug>
+#include <QBoxLayout>
 
 tableedit_base::tableedit_base(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::tableedit_base)
 {
     ui->setupUi(this);
+
+    tableLayout = new QVBoxLayout(this);
+       tableLayout->setContentsMargins(QMargins(3, 3, 3, 3));
 }
 
 tableedit_base::~tableedit_base()

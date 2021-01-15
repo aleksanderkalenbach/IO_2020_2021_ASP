@@ -5,6 +5,8 @@
 #include <QApplication>
 #include <QDockWidget>
 
+class QBoxLayout;
+
 
 class MainWindow : public QMainWindow
 {
@@ -37,6 +39,8 @@ public slots:
     void pokazPracownicy();
     void pokazObecnosc();
 
+protected:
+   QBoxLayout* QtGuiLayout;
 
 };
 #endif // MAINWINDOW_H

@@ -14,7 +14,7 @@ class tableedit_pracownik : public QWidget
 public:
     explicit tableedit_pracownik(QWidget *parent = nullptr);
     ~tableedit_pracownik();
-    void setValue(int row, QString id, QString imie, QString nazwisko, QString dataUrodzenia, QString email, QString telefon);
+    void setValue(int row, QString imie, QString nazwisko, QString dataUrodzenia, QString email, QString telefon);
 
 public slots:
     void on_pushButton_4_clicked();

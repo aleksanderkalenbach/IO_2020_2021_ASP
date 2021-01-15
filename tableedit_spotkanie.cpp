@@ -20,12 +20,11 @@ tableedit_spotkanie::~tableedit_spotkanie()
 
 
 
-void tableedit_spotkanie::setValue(int row, QString id, QString data, QString grupa)
+void tableedit_spotkanie::setValue(int row, QString data, QString grupa)
 {
     ui->tableWidget->insertRow(row);
-    ui->tableWidget->setItem(row,0,new QTableWidgetItem(id));
-    ui->tableWidget->setItem(row,1,new QTableWidgetItem(data));
-    ui->tableWidget->setItem(row,2,new QTableWidgetItem(grupa));
+    ui->tableWidget->setItem(row,0,new QTableWidgetItem(data));
+    ui->tableWidget->setItem(row,1,new QTableWidgetItem(grupa));
 
 }
 
@@ -67,7 +66,6 @@ void tableedit_spotkanie::on_pushButton_usun_clicked()
 void tableedit_spotkanie::on_pushButton_zmien_clicked()
 {
     int wiersz = ui->tableWidget->currentRow();
-    int id = ui->tableWidget->model()->index(wiersz,0).data().toInt();
 
     QDateTime Data = ui->tableWidget->model()->index(wiersz,1).data().toDateTime();
     QString Kurs = ui->tableWidget->model()->index(wiersz,2).data().toString();
@@ -87,7 +85,6 @@ void tableedit_spotkanie::on_pushButton_zmien_clicked()
         query.prepare("UPDATE [Spotkanie] SET Data=:Data, Kurs_ID_kurs=:Kurs WHERE ID_Spotkania = :id");
         query.bindValue(":Data",Data);
         query.bindValue(":Kurs",Kurs);
-        query.bindValue(":id", id);
         query.exec();
         db.close();
     }
@@ -115,7 +112,7 @@ void tableedit_spotkanie::on_pushButton_odswiez_clicked()
             int i=0;
              while(query.next())
              {
-                 setValue(i, query.value(0).toString(), query.value(1).toString(), query.value(2).toString());
+                 setValue(i, query.value(0).toString(), query.value(1).toString());
                  i++;
              }
              ui->tableWidget->resizeColumnsToContents();

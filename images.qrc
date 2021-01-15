@@ -1,12 +1,14 @@
-<!DOCTYPE RCC>
-<RCC version="1.0">
-<qresource>
-<file>icon/calendar_add.png</file>
-<file>icon/client_account_template.png</file>
-<file>icon/coins.png</file>
-<file>icon/house.png</file>
-<file>icon/user_oldman.png</file>
-<file>icon/users_5.png</file>
-<file>icon/wyjscie.png</file>
-</qresource>
+<RCC>
+    <qresource prefix="/">
+        <file>icon/calendar_add.png</file>
+        <file>icon/client_account_template.png</file>
+        <file>icon/coins.png</file>
+        <file>icon/house.png</file>
+        <file>icon/user_oldman.png</file>
+        <file>icon/users_5.png</file>
+        <file>icon/wyjscie.png</file>
+        <file>icon/accept_document.png</file>
+        <file>icon/meeting_workspace.png</file>
+        <file>icon/swimmer.png</file>
+    </qresource>
 </RCC>
