@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -64,6 +64,13 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Kurs</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
         <item>
@@ -79,6 +86,9 @@
           </item>
           <item>
            <widget class="QLineEdit" name="lineEmail"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboNazwa"/>
           </item>
          </layout>
         </item>

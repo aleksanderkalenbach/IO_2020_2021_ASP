@@ -50,6 +50,17 @@ void sqlmodifypracownik::on_buttonBox_accepted()
         query.addBindValue(Email);
         query.addBindValue(Telefon);
         query.exec();
+        query.next();
+        query.prepare("SELECT ID_Pracownika FROM Pracownik WHERE Imie = :Imie;");
+        query.bindValue(0, Imie);
+        query.exec();
+        query.next();
+        QString Pracownik_ID = query.value(0).toString();
+        query.prepare("SET IDENTITY_INSERT Prowadzący ON;"
+                      "INSERT INTO Prowadzący (ID_Pracownika) VALUES (?);"
+                      "SET IDENTITY_INSERT Prowadzący OFF;");
+        query.addBindValue(Pracownik_ID);
+        query.exec();
         db.close();
     }
 }
