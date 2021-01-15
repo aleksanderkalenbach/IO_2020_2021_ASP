@@ -36,7 +36,7 @@ void tableedit_obecnosci::on_pushButton_2_clicked()
     {
         qDebug() << "open";
         QSqlQuery query;
-        if(query.exec("SELECT * FROM [Obecnosc]"))
+        if(query.exec("SELECT Spotkanie_ID_Spotkania, Uczestnik_ID_Uczestnicy FROM [Obecnosc]"))
         {
             int i=0;
              while(query.next())

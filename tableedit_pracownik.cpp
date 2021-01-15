@@ -110,7 +110,7 @@ void tableedit_pracownik::on_pushButton_4_clicked()
     {
         qDebug() << "open";
         QSqlQuery query;
-        if(query.exec("SELECT * FROM [Pracownik] where Aktywny = '1'"))
+        if(query.exec("SELECT Imie, Nazwisko, Data_urodzenia, Email, Telefon FROM [Pracownik] where Aktywny = '1'"))
         {
             int i=0;
              while(query.next())

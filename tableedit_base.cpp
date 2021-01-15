@@ -111,7 +111,7 @@ void tableedit_base::on_pushButton_4_clicked()//funkcja odświeżenia rekordów
     {
         qDebug() << "open";
         QSqlQuery query;
-        if(query.exec("SELECT * FROM [Uczestnik] where Aktywny = '1'"))
+        if(query.exec("SELECT Imie, Nazwisko, Data_urodzenia,Email, Kwota_do_zaplaty FROM [Uczestnik] where Aktywny = '1'"))
         {
             int i=0;
              while(query.next())

@@ -107,7 +107,7 @@ void tableedit_spotkanie::on_pushButton_odswiez_clicked()
     {
         qDebug() << "open";
         QSqlQuery query;
-        if(query.exec("SELECT * FROM [Spotkanie] where Aktywny = '1' ORDER BY Data"))
+        if(query.exec("SELECT Data, Kurs_ID_Kurs FROM [Spotkanie] where Aktywny = '1' ORDER BY Data"))
         {
             int i=0;
              while(query.next())
