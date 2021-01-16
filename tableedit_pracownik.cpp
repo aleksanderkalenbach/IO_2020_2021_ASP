@@ -37,7 +37,10 @@ void tableedit_pracownik::on_pushButton_clicked()
 void tableedit_pracownik::on_pushButton_2_clicked()
 {
     int wiersz = ui->tableWidget->currentRow();
-    int id = ui->tableWidget->model()->index(wiersz,0).data().toInt();
+    QString Imie = ui->tableWidget->model()->index(wiersz,0).data().toString();
+    QString Nazwisko = ui->tableWidget->model()->index(wiersz,1).data().toString();
+    QDateTime Data_urodzenia = ui->tableWidget->model()->index(wiersz,2).data().toDateTime();
+
     QString servername = "LOCALHOST";
     QString dbname = "szkolaPlywacka";
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
@@ -48,11 +51,21 @@ void tableedit_pracownik::on_pushButton_2_clicked()
     {
         qDebug() << "open";
         QSqlQuery query;
-        query.prepare("update [Pracownik] set Aktywny = '0' where ID_Pracownika  = :id");
-        query.bindValue(0, id);
-        if(query.exec())
+        query.prepare("SELECT ID_Pracownika from Pracownik where Imie=:Imie and Nazwisko = :Nazwisko and Data_urodzenia=:Data_urodzenia");
+        query.bindValue(0,Imie);
+        query.bindValue(1,Nazwisko);
+        query.bindValue(2,Data_urodzenia);
+        query.exec();
+
+        if(query.next())
         {
-            qDebug() << "deleted";
+            QString id = query.value(0).toString();
+            query.prepare("update [Pracownik] set Aktywny = '0' where ID_Pracownika  = :id");
+            query.bindValue(0, id);
+            if(query.exec())
+            {
+                qDebug() << "deleted";
+            }
         }
         db.close();
     }
@@ -66,11 +79,11 @@ void tableedit_pracownik::on_pushButton_3_clicked()
 {
     int wiersz = ui->tableWidget->currentRow();
 
-    QString Imie = ui->tableWidget->model()->index(wiersz,1).data().toString();
-    QString Nazwisko = ui->tableWidget->model()->index(wiersz,2).data().toString();
-    QDateTime Data_urodzenia = ui->tableWidget->model()->index(wiersz,3).data().toDateTime();
-    QString Email = ui->tableWidget->model()->index(wiersz,4).data().toString();
-    QString Telefon = ui->tableWidget->model()->index(wiersz,5).data().toString();
+    QString Imie = ui->tableWidget->model()->index(wiersz,0).data().toString();
+    QString Nazwisko = ui->tableWidget->model()->index(wiersz,1).data().toString();
+    QDateTime Data_urodzenia = ui->tableWidget->model()->index(wiersz,2).data().toDateTime();
+    QString Email = ui->tableWidget->model()->index(wiersz,3).data().toString();
+    QString Telefon = ui->tableWidget->model()->index(wiersz,4).data().toString();
 
     QString servername = "LOCALHOST";
     QString dbname = "szkolaPlywacka";
@@ -82,13 +95,23 @@ void tableedit_pracownik::on_pushButton_3_clicked()
     {
         qDebug() << "open";
         QSqlQuery query;
-        query.prepare("UPDATE [Pracownik] SET Imie=:Imie, Nazwisko=:Nazwisko, Data_urodzenia=:Data_urodzenia, Email=:Email, Telefon=:Telefon WHERE ID_Pracownika = :id");
+        query.prepare("SELECT ID_Pracownika from Pracownik where Imie=:Imie and Nazwisko = :Nazwisko and Data_urodzenia=:Data_urodzenia");
         query.bindValue(0,Imie);
-        query.bindValue(":Nazwisko",Nazwisko);
-        query.bindValue(":Data_urodzenia",Data_urodzenia);
-        query.bindValue(":Email",Email);
-        query.bindValue(":Telefon",Telefon);
+        query.bindValue(1,Nazwisko);
+        query.bindValue(2,Data_urodzenia);
         query.exec();
+        if(query.next())
+        {
+            QString id = query.value(0).toString();
+            query.prepare("UPDATE [Pracownik] SET Imie=:Imie, Nazwisko=:Nazwisko, Data_urodzenia=:Data_urodzenia, Email=:Email, Telefon=:Telefon WHERE ID_Pracownika = :id");
+            query.bindValue(0,Imie);
+            query.bindValue(":Nazwisko",Nazwisko);
+            query.bindValue(":Data_urodzenia",Data_urodzenia);
+            query.bindValue(":Email",Email);
+            query.bindValue(":Telefon",Telefon);
+            query.bindValue(":id",id);
+            query.exec();
+        }
         db.close();
     }
     else
