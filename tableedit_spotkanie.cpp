@@ -24,7 +24,10 @@ void tableedit_spotkanie::setValue(int row, QString data, QString grupa)
 {
     ui->tableWidget->insertRow(row);
     ui->tableWidget->setItem(row,0,new QTableWidgetItem(data));
-    ui->tableWidget->setItem(row,1,new QTableWidgetItem(grupa));
+
+    QTableWidgetItem *Grupa = new QTableWidgetItem(grupa);
+    Grupa->setFlags(Grupa->flags() ^ Qt::ItemIsEditable);
+    ui->tableWidget->setItem(row,1,Grupa);
 
 }
 
@@ -38,7 +41,9 @@ void tableedit_spotkanie::on_pushButton_dodaj_clicked()
 void tableedit_spotkanie::on_pushButton_usun_clicked()
 {
     int wiersz = ui->tableWidget->currentRow();
-    int id = ui->tableWidget->model()->index(wiersz,0).data().toInt();
+    QDateTime Data = ui->tableWidget->model()->index(wiersz,0).data().toDateTime();
+    QString Kurs = ui->tableWidget->model()->index(wiersz,1).data().toString();
+
     QString servername = "LOCALHOST";
     QString dbname = "szkolaPlywacka";
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
@@ -49,11 +54,20 @@ void tableedit_spotkanie::on_pushButton_usun_clicked()
     {
         qDebug() << "open";
         QSqlQuery query;
-        query.prepare("update [Spotkanie] set Aktywny = '0' where ID_Spotkania  = :id");
-        query.bindValue(0, id);
-        if(query.exec())
+        query.prepare("select ID_Spotkania from Spotkanie s join Kurs k on s.Kurs_ID_kurs = k.ID_kurs where s.Data = :Data and k.Nazwa = :Nazwa");
+        query.bindValue(0, Data);
+        query.bindValue(1, Kurs);
+        query.exec();
+        if(query.next())
         {
-            qDebug() << "deleted";
+            QString id = query.value(0).toString();
+            qDebug() << id;
+            query.prepare("update [Spotkanie] set Aktywny = '0' where ID_Spotkania  = :id");
+            query.bindValue(0, id);
+            if(query.exec())
+            {
+                qDebug() << "deleted";
+            }
         }
         db.close();
     }
@@ -66,11 +80,8 @@ void tableedit_spotkanie::on_pushButton_usun_clicked()
 void tableedit_spotkanie::on_pushButton_zmien_clicked()
 {
     int wiersz = ui->tableWidget->currentRow();
-
-    QDateTime Data = ui->tableWidget->model()->index(wiersz,1).data().toDateTime();
-    QString Kurs = ui->tableWidget->model()->index(wiersz,2).data().toString();
-
-
+    QString Data = ui->tableWidget->model()->index(wiersz,0).data().toString();
+    QString Kurs = ui->tableWidget->model()->index(wiersz,1).data().toString();
 
     QString servername = "LOCALHOST";
     QString dbname = "szkolaPlywacka";
@@ -82,10 +93,18 @@ void tableedit_spotkanie::on_pushButton_zmien_clicked()
     {
         qDebug() << "open";
         QSqlQuery query;
-        query.prepare("UPDATE [Spotkanie] SET Data=:Data, Kurs_ID_kurs=:Kurs WHERE ID_Spotkania = :id");
-        query.bindValue(":Data",Data);
-        query.bindValue(":Kurs",Kurs);
+        query.prepare("select ID_Spotkania from Spotkanie s join Kurs k on s.Kurs_ID_kurs = k.ID_kurs where s.Data = :Data and k.Nazwa = :Nazwa");
+        query.bindValue(0, Data);
+        query.bindValue(":Nazwa", Kurs);
         query.exec();
+        if(query.next())
+        {
+            QString id = query.value(0).toString();
+            query.prepare("UPDATE [Spotkanie] SET Data=:Data WHERE ID_Spotkania = :id");
+            query.bindValue(":Data",Data);
+            query.bindValue(":id", id);
+            query.exec();
+        }
         db.close();
     }
     else
@@ -107,7 +126,7 @@ void tableedit_spotkanie::on_pushButton_odswiez_clicked()
     {
         qDebug() << "open";
         QSqlQuery query;
-        if(query.exec("SELECT Data, Kurs_ID_Kurs FROM [Spotkanie] where Aktywny = '1' ORDER BY Data"))
+        if(query.exec("SELECT s.Data, k.Nazwa FROM Spotkanie s join Kurs k on s.Kurs_ID_kurs = k.ID_kurs where s.Aktywny = '1' ORDER BY Data"))
         {
             int i=0;
              while(query.next())

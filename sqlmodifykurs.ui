@@ -84,7 +84,7 @@
           <item>
            <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>ID Prowadzącego</string>
+             <string>Prowadzący</string>
             </property>
            </widget>
           </item>

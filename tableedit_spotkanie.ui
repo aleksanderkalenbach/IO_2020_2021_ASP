@@ -68,7 +68,7 @@
         </column>
         <column>
          <property name="text">
-          <string>Grupa</string>
+          <string>Kurs</string>
          </property>
         </column>
        </widget>

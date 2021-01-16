@@ -100,8 +100,6 @@ void tableedit_kursy_pracownik::on_pushButton_zmien_clicked()
         if(query.next())
         {
             QString id = query.value(0).toString();
-            qDebug() << id;
-
             query.prepare("UPDATE [Kurs] SET Nazwa=:Nazwa, Data_rozpoczecia=:Data_rozpoczecia, Data_zakonczenia=:Data_zakonczenia, Cena=:Cena, Poziom_zaawansowania=:Poziom, Od_ilu_lat=:Wiek WHERE ID_Kurs = :id");
             query.bindValue(0,Nazwa);
             query.bindValue(":Data_rozpoczecia",Data_rozpoczecia);
