@@ -46,8 +46,6 @@ void SqlModify::on_buttonBox_accepted()
     QString Email = ui->lineEmail->text();
     QString Uczestnik_kurs = ui->comboNazwa->currentText();
 
-    QString Nazwa = Uczestnik_kurs.section(' ', 0, 0);
-
 
     if(Imie.isEmpty() || Nazwisko.isEmpty() || Data_urodzenia.isEmpty())
     {
@@ -75,16 +73,22 @@ void SqlModify::on_buttonBox_accepted()
         query.addBindValue(Email);
         query.exec();
         query.next();
-        query.prepare("SELECT ID_kurs from Kurs where Nazwa = :Nazwa;");
-        query.bindValue(0, Nazwa);
+        query.prepare("SELECT ID_kurs, Cena from Kurs where Nazwa = :Nazwa;");
+        query.bindValue(0, Uczestnik_kurs);
         query.exec();
         query.next();
         QString Kurs_ID = query.value(0).toString();
-        query.prepare("SELECT ID_Uczestnicy FROM Uczestnik WHERE Imie = :Imie;");
+        QString Cena = query.value(1).toString();
+        query.prepare("SELECT ID_Uczestnicy FROM Uczestnik WHERE Imie = :Imie and Nazwisko = :Nazwisko;");
         query.bindValue(0, Imie);
+        query.bindValue(1, Nazwisko);
         query.exec();
         query.next();
         QString Uczestnik_ID = query.value(0).toString();
+        query.prepare("update Uczestnik set Kwota_do_zaplaty = Kwota_do_zaplaty + :Cena where ID_Uczestnicy = :Uczestnik_ID;");
+        query.bindValue(0, Cena);
+        query.bindValue(1, Uczestnik_ID);
+        query.exec();
         query.prepare("SET IDENTITY_INSERT Uczestnik_kurs ON;"
                       "INSERT INTO Uczestnik_kurs (Kurs_ID_kurs, Uczestnik_ID_Uczestnicy) VALUES (?, ?);"
                       "SET IDENTITY_INSERT Uczestnik_kurs OFF;");

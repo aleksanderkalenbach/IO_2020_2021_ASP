@@ -20,7 +20,7 @@ tableedit_base::~tableedit_base()
     delete ui;
 }
 
-void tableedit_base::setValue(int row, QString imie, QString nazwisko, QString dataUrodzenia, QString email, QString kwotaDoZaplaty)
+void tableedit_base::setValue(int row, QString imie, QString nazwisko, QString dataUrodzenia, QString email, QString kwotaDoZaplaty, QString kurs)
 {
     ui->tableWidget->insertRow(row);
     ui->tableWidget->setItem(row,0,new QTableWidgetItem(imie));
@@ -28,6 +28,10 @@ void tableedit_base::setValue(int row, QString imie, QString nazwisko, QString d
     ui->tableWidget->setItem(row,2,new QTableWidgetItem(dataUrodzenia));
     ui->tableWidget->setItem(row,3,new QTableWidgetItem(email));
     ui->tableWidget->setItem(row,4,new QTableWidgetItem(kwotaDoZaplaty));
+
+    QTableWidgetItem *Kurs = new QTableWidgetItem(kurs);
+    Kurs->setFlags(Kurs->flags() ^ Qt::ItemIsEditable);
+    ui->tableWidget->setItem(row,5,Kurs);
 }
 
 
@@ -111,12 +115,12 @@ void tableedit_base::on_pushButton_4_clicked()//funkcja odświeżenia rekordów
     {
         qDebug() << "open";
         QSqlQuery query;
-        if(query.exec("SELECT Imie, Nazwisko, Data_urodzenia,Email, Kwota_do_zaplaty FROM [Uczestnik] where Aktywny = '1'"))
+        if(query.exec("SELECT Imie, Nazwisko, Data_urodzenia,Email, Kwota_do_zaplaty, k.Nazwa FROM Uczestnik u join Uczestnik_kurs uk on u.ID_uczestnicy = uk.Uczestnik_ID_Uczestnicy join Kurs k on k.ID_kurs = uk.Kurs_ID_kurs where u.Aktywny = '1'"))
         {
             int i=0;
              while(query.next())
              {
-                 setValue(i, query.value(0).toString(), query.value(1).toString(), query.value(2).toString(), query.value(3).toString(), query.value(4).toString());
+                 setValue(i, query.value(0).toString(), query.value(1).toString(), query.value(2).toString(), query.value(3).toString(), query.value(4).toString(), query.value(5).toString());
                  i++;
              }
              ui->tableWidget->resizeColumnsToContents();

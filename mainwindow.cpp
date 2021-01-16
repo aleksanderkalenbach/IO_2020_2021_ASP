@@ -43,8 +43,8 @@ MainWindow::MainWindow(QWidget *parent)
       zajecia->setCheckable(true);
       kursy = toolbar->addAction(QIcon(":/icon/calendar_add.png"),"Kursy");
       kursy->setCheckable(true);
-      obecnosc = toolbar->addAction(QIcon(":/icon/accept_document"),"Obecnosc");
-      obecnosc->setCheckable(true);
+      //obecnosc = toolbar->addAction(QIcon(":/icon/accept_document"),"Obecnosc");
+      //obecnosc->setCheckable(true);
 
 
 
@@ -70,7 +70,7 @@ MainWindow::MainWindow(QWidget *parent)
       connect(start,SIGNAL(triggered()),this, SLOT(pokazStart()));
       connect(grupy, SIGNAL(triggered()), this, SLOT(pokazGrupy()));
       connect(zajecia, SIGNAL(triggered()), this, SLOT(pokazZajecia()));
-      connect(obecnosc, SIGNAL(triggered()),this,SLOT(pokazObecnosc()));
+      //connect(obecnosc, SIGNAL(triggered()),this,SLOT(pokazObecnosc()));
 
       if(login.login == "Student")
       {
@@ -111,9 +111,9 @@ void MainWindow::pokazGrupy()
         {
             kursy->setChecked(false);
         }
-        if(obecnosc->isChecked())
+        //if(obecnosc->isChecked())
         {
-            obecnosc->setChecked(false);
+           // obecnosc->setChecked(false);
         }
 
         setCentralWidget(tabela);
@@ -142,9 +142,9 @@ void MainWindow::pokazZajecia()
          {
              kursy->setChecked(false);
          }
-         if(obecnosc->isChecked())
+         //if(obecnosc->isChecked())
          {
-             obecnosc->setChecked(false);
+             //obecnosc->setChecked(false);
          }
 
         setCentralWidget(tabela);
@@ -171,9 +171,9 @@ void MainWindow::pokazKursy()
         {
             grupy->setCheckable(false);
         }
-        if(obecnosc->isChecked())
+        //if(obecnosc->isChecked())
         {
-            obecnosc->setChecked(false);
+            //obecnosc->setChecked(false);
         }
 
         setCentralWidget(tabela);
@@ -200,9 +200,9 @@ void MainWindow::pokazKursyPracownik()
         {
             grupy->setCheckable(false);
         }
-        if(obecnosc->isChecked())
+        //if(obecnosc->isChecked())
         {
-            obecnosc->setChecked(false);
+            //obecnosc->setChecked(false);
         }
 
 
@@ -231,9 +231,9 @@ void MainWindow::pokazStart()
          {
              kursy->setChecked(false);
          }
-         if(obecnosc->isChecked())
+         //if(obecnosc->isChecked())
          {
-             obecnosc->setChecked(false);
+             //obecnosc->setChecked(false);
          }
 
          setCentralWidget(start);
@@ -261,9 +261,9 @@ void MainWindow::pokazPracownicy()
         {
             kursy->setChecked(false);
         }
-        if(obecnosc->isChecked())
+        //if(obecnosc->isChecked())
         {
-            obecnosc->setChecked(false);
+            //obecnosc->setChecked(false);
         }
 
         setCentralWidget(tabela);
