@@ -46,7 +46,8 @@ void tableedit_base::on_pushButton_clicked()
 void tableedit_base::on_pushButton_2_clicked()
 {
     int wiersz = ui->tableWidget->currentRow();
-    int id = ui->tableWidget->model()->index(wiersz,0).data().toInt();
+    QString Imie = ui->tableWidget->model()->index(wiersz,0).data().toString();
+    QString Nazwisko = ui->tableWidget->model()->index(wiersz,1).data().toString();
     QString servername = "LOCALHOST";
     QString dbname = "szkolaPlywacka";
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
@@ -57,12 +58,15 @@ void tableedit_base::on_pushButton_2_clicked()
     {
         qDebug() << "open";
         QSqlQuery query;
-        query.prepare("update [Uczestnik] set Aktywny = '0' where ID_Uczestnicy = :id");
-        query.bindValue(0, id);
+
+        query.prepare("update [Uczestnik] set Aktywny = '0' where Imie=:Imie AND Nazwisko=:Nazwisko");
+        query.bindValue(0, Imie);
+        query.bindValue(":Nazwisko", Nazwisko);
         if(query.exec())
         {
             qDebug() << "deleted";
         }
+
         db.close();
     }
     else
